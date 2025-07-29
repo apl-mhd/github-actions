@@ -3,6 +3,8 @@ name: Hello World
 env:
   GLOBAL_VAR: "workflow-level"
   USERNAME: "orko"
+  REPO_VAR: ${{vars.REPO_VAR}}
+  REPO_SECRET: ${{secrets.REPO_SECRET}}
 
 on:
   workflow_dispatch:
@@ -23,23 +25,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show env variables
-        run: echo "The global variable is ${{env.GLOBAL_VAR}} and the username is ${{env.USERNAME}}"
+        run: |
+          echo "The global variable is ${{env.GLOBAL_VAR}}"
+          echo "The job variable is ${{env.JOB_VAR}}"
+          echo "This STEP_VAR: ${{env.STEP_VAR}}"
 
-      - name: Run a simple script
-        run: echo The username is ${{inputs.username}}
-      
+      - name: Git Action Secret and variable
+        run: |
+          echo "Repo Var: $REPO_VAR"
+          echo "Repo Secret $REPO_SECRET"
+
         env:
-          LOCAL_VAR: "step-level"
-
-  checkout-example:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Display file in the Repository
-        run: ls -la
-      - name: Show current DIR
-        run: pwd
-
-  
+          STEP_VAR: "step-level"
