@@ -28,7 +28,7 @@ jobs:
         run: |
           echo "The global variable is ${{env.GLOBAL_VAR}}"
           echo "The job variable is ${{env.JOB_VAR}}"
-          echo "This STEP_VAR: ${{env.STEP_VAR}}"
+          echo "This STEP_VAR: $STEP_VAR"
 
       - name: Git Action Secret and variable
         run: |
