@@ -16,10 +16,9 @@ on:
       - main
 
 jobs:
-  hello-world:
-    env:
-      JOB_VAR: "job-level"
 
+
+  hello-world:
     runs-on: ubuntu-latest
     steps:
       - name: Show env variables
@@ -27,9 +26,6 @@ jobs:
 
       - name: Run a simple script
         run: echo The username is ${{inputs.username}}
-      
-        env:
-          LOCAL_VAR: "step-level"
 
   checkout-example:
     runs-on: ubuntu-latest
