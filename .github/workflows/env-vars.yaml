@@ -2,6 +2,7 @@ name: Hello World
 
 env:
   GLOBAL_VAR: "workflow-level"
+  USERNAME: "orko"
 
 on:
   workflow_dispatch:
@@ -15,6 +16,17 @@ on:
       - main
 
 jobs:
+
+
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show env variables
+        run: echo "The global variable is ${{env.GLOBAL_VAR}} and the username is ${{env.USERNAME}}"
+
+      - name: Run a simple script
+        run: echo The username is ${{inputs.username}}
+
   checkout-example:
     runs-on: ubuntu-latest
     steps:
@@ -26,14 +38,4 @@ jobs:
       - name: Show current DIR
         run: pwd
 
-  hello-world:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Show System Information
-        run: |
-          echo "Running on $(uname -s) $(uname -r)"
-          echo "Current User: $(whoami)"
-          echo "System Architecture: $(uname -m)"
-
-      - name: Run a simple script
-        run: echo The username is ${{inputs.username}}
+  
