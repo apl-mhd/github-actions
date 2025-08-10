@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  if-example:
+  upload-file-sharing:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +29,7 @@ jobs:
 
 
 
-  test-file-sharing:
+  download-file-sharing:
     runs-on: ubuntu-latest
 
     steps:
@@ -42,3 +42,4 @@ jobs:
       - name: Print output
         run: |
           cat output.txt || echo "No output file found."
+          ls -la
