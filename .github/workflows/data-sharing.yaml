@@ -13,12 +13,12 @@ concurrency:
 jobs:
   upload-file-sharing:
     runs-on: ubuntu-latest
+    needs: [upload-file-sharing]
 
     steps:
-     
       - name: Print message if branch is main
         if: github.ref == 'refs/heads/main'
-        run: | 
+        run: |
           echo "This is the main branch." > output.txt
 
       - name: Upload output file
@@ -27,13 +27,10 @@ jobs:
           name: output-file
           path: output.txt
 
-
-
   download-file-sharing:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Download output file
         uses: actions/download-artifact@v4
         with:
