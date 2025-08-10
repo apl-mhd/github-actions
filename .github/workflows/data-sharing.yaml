@@ -40,3 +40,4 @@ jobs:
       - name: Print output
         run: |
           ls -la
+          cat output.txt || echo "No output file found."
