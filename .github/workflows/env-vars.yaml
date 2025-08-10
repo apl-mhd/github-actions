@@ -24,17 +24,16 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: Show env variables
+      - name: Print Environment Variables
         run: |
           echo "The global variable is $GLOBAL_VAR"
           echo "The job variable is $JOB_VAR"
           echo "STEP_VAR (shell): $STEP_VAR"
-          echo "STEP_VAR (expression): ${{ env.STEP_VAR }}"
 
       - name: Git Action Secret and variable
         run: |
           echo "Repo Var: $REPO_VAR"
-          echo "Repo Secret $REPO_SECRET"
+          echo "Repo Secret: $REPO_SECRET"
 
         env:
           STEP_VAR: "step-level"
