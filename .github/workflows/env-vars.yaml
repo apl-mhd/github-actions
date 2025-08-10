@@ -1,4 +1,4 @@
-name: Hello World
+name: ENV and secrects example  
 
 env:
   GLOBAL_VAR: "workflow-level"
@@ -18,7 +18,7 @@ on:
       - main
 
 jobs:
-  hello-world:
+  env-secrets-example:
     env:
       JOB_VAR: "job-level"
 
