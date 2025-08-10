@@ -1,0 +1,24 @@
+name: Concerrency and if else Example
+
+on:
+  push:
+    branches:
+      - main
+      - feature/*
+
+concurrency:
+  group: my-concurrency-group
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print message if branch is main
+        if: github.ref == 'refs/heads/main'
+        run: echo "This is the main branch."
