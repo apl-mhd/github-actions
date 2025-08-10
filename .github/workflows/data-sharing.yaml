@@ -38,5 +38,4 @@ jobs:
 
       - name: Print output
         run: |
-          cat output.txt || echo "No output file found."
           ls -la
