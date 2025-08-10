@@ -22,7 +22,7 @@ jobs:
           echo "This is the main branch." > output.txt
 
       - name: Upload output file
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: output-file
           path: output.txt
@@ -35,10 +35,10 @@ jobs:
     steps:
 
       - name: Download output file
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: output-file
-          
+
       - name: Print output
         run: |
           cat output.txt || echo "No output file found."
