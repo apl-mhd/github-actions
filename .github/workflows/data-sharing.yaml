@@ -1,0 +1,44 @@
+name: Concerrency and if else Example
+
+on:
+  push:
+    branches:
+      - main
+      - feature/*
+
+concurrency:
+  group: my-concurrency-group
+  cancel-in-progress: true
+
+jobs:
+  if-example:
+    runs-on: ubuntu-latest
+
+    steps:
+     
+      - name: Print message if branch is main
+        if: github.ref == 'refs/heads/main'
+        run: | 
+          echo "This is the main branch." > output.txt
+
+      - name: Upload output file
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-file
+          path: output.txt
+
+
+
+  test-file-sharing:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Download output file
+        uses: actions/download-artifact@v3
+        with:
+          name: output-file
+          
+      - name: Print output
+        run: |
+          cat output.txt || echo "No output file found."
